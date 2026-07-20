@@ -12,8 +12,8 @@ def load_and_clean_data():
     print("📂 Loading Kaggle NYC Dataset...")
     df = pd.read_csv(CSV_PATH)
     
-    # 1. Convert timestamp and extract features
-    df['dt'] = pd.to_datetime(df['utcTimestamp'])
+    # 1. Convert timestamp and extract features - WITH THE CORRECTED FORMAT
+    df['dt'] = pd.to_datetime(df['utcTimestamp'], format='%a %b %d %H:%M:%S %z %Y')
     df['hour'] = df['dt'].dt.hour
     df['is_weekend'] = (df['dt'].dt.dayofweek // 5).astype(float)
     
